@@ -10,6 +10,10 @@ import Register from './Pages/Register';
 function App() {
 
     const [userName, setUsername] = useState("");
+    const [name, setName] = useState("");
+    const [surname, setSurname] = useState("");
+    const [birthdate, setBirthdate] = useState("");
+    const [address, setAddress] = useState("");
 
     useEffect(() => {
         (
@@ -21,6 +25,10 @@ function App() {
 
                 const content = await response.json();
                 setUsername(content.username);
+                setName(content.name);
+                setSurname(content.surname);
+                setBirthdate(content.birthdate);
+                setAddress(content.address);
             }
         )();
     });
@@ -32,7 +40,8 @@ function App() {
               <main className="form-signin w-100 m-auto">
               
                   <Routes>
-                      <Route path="/" Component={() => <Home name={userName} />} />
+                      <Route path="/" Component={() => <Home username={userName} name={name} surname={surname} birthdate={birthdate}
+                          address={address} />} />
                       <Route path="/login" Component={() => <Login setName={setUsername} />} />
                       <Route path="/register" Component={Register} />
                   </Routes>
